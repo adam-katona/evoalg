@@ -1,6 +1,6 @@
 
 **************************************************************
-Evoalg, a scalable anf flexible evolutionary algorithm library
+Evoalg, a scalable and flexible evolutionary algorithm library
 **************************************************************
 
 Warning: This library is not finished yet, it is not in a usable state.
@@ -20,8 +20,7 @@ The library has 2 clear goals:
    (Task, Parralelizaton, Algorithm) which allows minimal effort switching of any of the three components without changing the others.
 
 
-.. toctree::
-   :maxdepth: 2
+
 
 Difference to other libraries
 =============================
@@ -30,9 +29,6 @@ Evolag is aiming to fill the market gap in evolutionary algorithm libraries of s
 There are plenty of simple, feature-rich and flexible libraries, but they are not designed to be running on a CPU clusters.
 While the implementations which are designed for running on a cluster (eg open ai ES, uber ai GA) are not flexible, they complect different conepts.
 
-
-.. toctree::
-   :maxdepth: 2
    
 Planned algorithms
 ==================
