@@ -1,6 +1,6 @@
 
 **************************************************************
-Evoalg, a scalable anf flexible evolutionary algorithm library
+Evoalg, a scalable and flexible evolutionary algorithm library
 **************************************************************
 
 Warning: This library is not finished yet, it is not in a usable state.
