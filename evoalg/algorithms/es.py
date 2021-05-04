@@ -52,7 +52,7 @@ class ES():
         # Use half pop sized because of mirrored sampling
         HALF_POP_SIZE = self.config["ES_popsize"] // 2
 
-        random_table_indicies = [random_table.get_random_index(self.num_params) for _ in range(self.config["ES_popsize"])]
+        random_table_indicies = [random_table.get_random_index(self.num_params) for _ in range(HALF_POP_SIZE)]
         pop_list = [(rand_i,1) for rand_i in random_table_indicies] # (rand_index,direction)
         pop_list.extend([(rand_i,-1) for rand_i in random_table_indicies]) # mirrored sampling
 
@@ -88,7 +88,7 @@ class ES():
         perturbation_array = [noise_table[rand_i:rand_i+self.num_params]*direction for rand_i,direction in self.last_population["population"]]
         perturbation_array = torch.stack(perturbation_array)
 
-        grad = torch.matmul(perturbation_ranks,perturbation_array)
+        grad = torch.matmul(perturbation_ranks,perturbation_array)  # ES update, calculate the weighted sum of the perturbations
         grad = grad / self.config["ES_popsize"] / self.config["ES_sigma"]
 
         self.theta.grad = -grad # we are maximizing, but torch optimizer steps in the opposite direction of the gradient, multiply by -1 so we can maximize.
