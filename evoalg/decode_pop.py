@@ -20,7 +20,7 @@ def decode_rand_table_mutate_individual(individual,broadcasted_data):
     mutation_noise = sign * noise_table[rand_table_i:rand_table_i+parameter_size] * sigma
     decoded_individual = center_individual + mutation_noise
 
-    return decoded_individual
+    return decoded_individual.numpy()
 
 
 def get_deterministic_random_noise(seed,size):
@@ -41,7 +41,7 @@ def decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,g
         noise = get_deterministic_random_noise(mutation_seed,size)
         decoded_individual += noise * mutation_power
 
-    return decoded_individual
+    return decoded_individual.numpy()
 
 
 

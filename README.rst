@@ -27,7 +27,9 @@ Difference to other libraries
 
 Evolag is aiming to fill the market gap in evolutionary algorithm libraries of simultaneously being fast and scalable, while also being simple and flexible.
 There are plenty of simple, feature-rich and flexible libraries, but they are not designed to be running on a CPU clusters.
-While the implementations which are designed for running on a cluster (eg open ai ES, uber ai GA) are not flexible, they complect different conepts.
+While the implementations which are designed for running on a cluster (eg open ai ES, uber ai GA) are not flexible.
+
+The main audiance are people who care about and what to modify or experiment with algorithms
 
    
 Planned algorithms

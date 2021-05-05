@@ -2,7 +2,7 @@
 import numpy as np
 import copy
 
-from evoalg.algo import algo_utils
+from evoalg.algorithms import algo_utils
 
 
 

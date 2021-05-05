@@ -3,7 +3,7 @@ import torch
 import numpy as np
 
 
-from evoalg.algo import algo_utils
+from evoalg.algorithms import algo_utils
 
 
 
@@ -29,13 +29,13 @@ class ES():
             print("Required fields are: ",self.required_config_fields)
             raise "Error, ES missing required config"
 
-        initial_theta = self.get_rand_init()
+        initial_theta = self.get_rand_init(config)
         initial_theta = torch.from_numpy(initial_theta)
 
         self.num_params = initial_theta.shape[0]
 
         self.theta = torch.nn.Parameter(initial_theta) 
-        optimizer = torch.optim.Adam([self.theta],lr=self.config["ES_lr"])
+        self.optimizer = torch.optim.Adam([self.theta],lr=self.config["ES_lr"])
 
 
 
