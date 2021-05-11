@@ -39,7 +39,7 @@ class GA():
 
         if self.current_population is None:
             # this is the first generation
-            self.current_population = [[rand_seed]  for rand_seed in [np.random.randint(low=np.iinfo(np.int64).min, high=np.iinfo(np.int64).max, size=config["GA_popsize"])]] 
+            self.current_population = [[rand_seed]  for rand_seed in np.random.randint(low=np.iinfo(np.int64).min, high=np.iinfo(np.int64).max, size=self.config["GA_popsize"])] 
 
         else:
             if self.next_population is None:
@@ -51,7 +51,7 @@ class GA():
         encoded_population = {
             "population" : self.current_population,
             "data_to_broadcast" : {
-                "mutation_power" : config["GA_mutation_power"],
+                "mutation_power" : self.config["GA_mutation_power"],
             },
             "encoding_type" : "init_seed_and_mutation_seeds",
         }
@@ -69,11 +69,11 @@ class GA():
         ordered_pop = self.current_population[order]
 
         # get elites
-        elites = ordered_pop[-config["GA_num_elites"]:]
+        elites = ordered_pop[-self.config["GA_num_elites"]:]
 
         # get babies
-        num_parents = int(config["GA_popsize"] * config["GA_allowed_reproduce_ratio"])  # turncated selection (like in deep ga paper)
-        num_babies = config["GA_popsize"] - config["GA_num_elites"]
+        num_parents = int(self.config["GA_popsize"] * self.config["GA_allowed_reproduce_ratio"])  # turncated selection (like in deep ga paper)
+        num_babies = self.config["GA_popsize"] - self.config["GA_num_elites"]
         parents = ordered_pop[-num_parents:]
         babies = [copy.deepcopy(parent).append(self._get_rand_seed()) for parent in np.random.choice(parents, size=num_babies, replace=True)]
 

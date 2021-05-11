@@ -25,10 +25,13 @@ class CMA_ES():
             raise "Error, ES missing required config"
 
 
-        x0 = get_random_initial_parameters_func()
+        x0 = self.get_rand_init(config)
         
-        # TODO set option for CMA
-        self.cma = cma.CMA(x0)
+        self.cma = cma.CMAEvolutionStrategy(
+            x0=x0,
+            sigma0=self.config["CMA_initial_sigma"],
+            inopts={'popsize': self.config["CMA_popsize"],},
+            )
 
 
     def ask(self):

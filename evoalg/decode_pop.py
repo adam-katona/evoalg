@@ -29,12 +29,12 @@ def get_deterministic_random_noise(seed,size):
     np.random.seed()
     return noise
 
-def decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,get_random_initial_parameters_func):
+def decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,get_random_initial_parameters_func,config):
 
     mutation_power = broadcasted_data["mutation_power"]
 
     initial_seed = individual[0]
-    decoded_individual = get_random_initial_parameters_func(seed=initial_seed)
+    decoded_individual = get_random_initial_parameters_func(config,seed=initial_seed)
     size = decoded_individual.numel()
 
     for mutation_seed in individual[1:]:
@@ -46,12 +46,12 @@ def decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,g
 
 
 
-def decode_individual(individual,broadcasted_data,encoding_type,get_random_initial_parameters_func):
+def decode_individual(individual,broadcasted_data,encoding_type,get_random_initial_parameters_func,config):
     if encoding_type is None:
         # the individual is not encoded, return as it is
         return individual
     elif encoding_type == "init_seed_and_mutation_seeds":
-        return decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,get_random_initial_parameters_func)
+        return decode_init_seed_and_mutation_seeds_individual(individual,broadcasted_data,get_random_initial_parameters_func,config)
         
     elif encoding_type == "rand_table_mutate":
         return decode_rand_table_mutate_individual(individual,broadcasted_data)
