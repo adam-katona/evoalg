@@ -50,7 +50,8 @@ def _dask_run(individual,shared_data):
 
 
 
-
+# TODO currently this does not work, there are mysterious dask warnings, and the code is stuck somewhere
+# Need to figure out why
 def dask_evaluate(encoded_pop,evaluate_task_func,get_random_initial_parameters_func,config,client):
 
     if client is None:
@@ -75,6 +76,11 @@ def dask_evaluate(encoded_pop,evaluate_task_func,get_random_initial_parameters_f
     return results
 
 
+# to debug simple case
+def dask_evaluate_simple(encoded_pop,evaluate_task_func,config,client):
+    result_futures = client.map(evaluate_task_func,encoded_pop["population"],itertools.repeat(config))
+    results = client.gather(result_futures)
 
+    return results
 
 
