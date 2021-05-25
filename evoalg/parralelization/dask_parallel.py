@@ -14,6 +14,13 @@ sys.path.append("/users/ak1774/scratch/NCA/brain-tokyo-workshop/WANNRelease/WANN
 def _dask_run(individual,shared_data):
     torch.set_num_threads(1)
 
+    import sys
+    if "/users/ak1774/scratch/NCA/evocraft-cellular-automata" not in sys.path:
+        sys.path.append("/users/ak1774/scratch/NCA/brain-tokyo-workshop/WANNRelease/WANN")
+        sys.path.append("/users/ak1774/scratch/NCA/evocraft-cellular-automata")
+        sys.path.append("/users/ak1774/scratch/NCA/brain-tokyo-workshop/WANNRelease")
+        sys.path.append("/users/ak1774/scratch/NCA/brain-tokyo-workshop/WANNRelease/WANN/domain")
+
     from pydoc import locate
     evaluate_func = locate(shared_data["config"]["TASK_EVALUATE_FUN"])
     get_random_parameter_func = locate(shared_data["config"]["TASK_INIT_FUN"])
